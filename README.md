@@ -14,7 +14,7 @@
 # Dados de balanço com filtros
     - por ano
 
-# Criar categorias
+# Criar categorias (DONE)
     - nome, cor
     - Não é possível criar categorias repetidas
 
