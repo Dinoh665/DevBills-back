@@ -18,5 +18,5 @@
     - nome, cor
     - Não é possível criar categorias repetidas
 
-# Criar transações
+# Criar transações (DONE)
     - categoria, nome, valor, data, tipo
