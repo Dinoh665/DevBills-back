@@ -1,4 +1,5 @@
 import { CreateCategorieDTO } from "../../dtos/categories.dto"
+import { IndexTransactionsDTO } from "../../dtos/transactions.dto"
 import { Transaction } from "../../entities/transactions.entity"
 import { TransacitionModel } from "../schemas/transactions.schema"
 
@@ -13,8 +14,20 @@ export class TransactionsRepository {
     }
 
     
-    async index(): Promise<Transaction[]> {
-        const transactions = await this.model.find()
+    async index({ title, categoryId, beginDate, endDate }: IndexTransactionsDTO): Promise<Transaction[]> {
+        const whereParams: Record<string, unknown> = {
+            ...(title && { title: { $regex: title, $options: 'i' } }),
+            ...(categoryId && { 'category._id': categoryId }),
+        }
+
+        if(beginDate || endDate) {
+            whereParams.date = {
+                ...(beginDate && { $gte: beginDate}),
+                ...(endDate && { $lte: endDate})
+            }
+        }        
+        
+        const transactions = await this.model.find(whereParams)
 
         const transactionsMap = transactions.map(item => item.toObject<Transaction>())
 
