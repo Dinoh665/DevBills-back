@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { TransactionService } from "../services/transactions.service";
-import { CreateTransactionDTO, IndexTransactionsDTO } from "../dtos/transactions.dto";
+import { CreateTransactionDTO, GetDashboardDTO, IndexTransactionsDTO } from "../dtos/transactions.dto";
 
 export class TransactionController {
     constructor(private transactionsService: TransactionService) {}
@@ -41,4 +41,21 @@ export class TransactionController {
         }
 
     }
+
+    getDashboard = async (
+        req: Request<unknown, unknown, unknown, GetDashboardDTO>,
+        res: Response,
+        next: NextFunction
+    ) => {
+        
+        try {        
+            const { beginDate, endDate } = req.query
+            const result = await this.transactionsService.getDashboard({ beginDate, endDate })
+
+            return res.status(StatusCodes.OK).json(result)
+        } catch (err){
+            next(err)
+        }
+
+    }    
 }
