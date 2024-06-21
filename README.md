@@ -3,15 +3,15 @@
     - por período (início e fim)
     - por categoria
 
-# Listar as categorias
+# Listar as categorias (DONE)
 
-# Dados de saldo com filtros
+# Dados de saldo com filtros (DONE)
     - por período (início e fim)
 
-# Dados de despesas por categoria com filtros
+# Dados de despesas por categoria com filtros (DONE)
     - por período
 
-# Dados de balanço com filtros
+# Dados de balanço com filtros (DONE)
     - por ano
 
 # Criar categorias (DONE)
