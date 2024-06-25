@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { CategoriesService } from "../services/categories.service";
 import { CreateCategorieDTO } from "../dtos/categories.dto"
 import { StatusCodes } from "http-status-codes";
+import { BodyRequest } from "./types";
 
 export class CategoriesController {
     constructor(private categoriesService: CategoriesService) {
@@ -9,7 +10,7 @@ export class CategoriesController {
     }
     
     create = async (
-        req: Request<unknown, unknown, CreateCategorieDTO>,
+        req: BodyRequest<CreateCategorieDTO>,
         res: Response,
         next: NextFunction
     ) => {
